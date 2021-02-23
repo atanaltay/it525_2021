@@ -4,18 +4,13 @@ import java.util.List;
 
 import dao.DepartmentDAO;
 import model.Department;
+import model.Employee;
 
-public class ApplicationService {
+public interface ApplicationService {
 
 	
-	public List<Department> getAllDepartments(){
-		
-		return new DepartmentDAO().findAll();
-		
-		
-		
-	}
- 	
+	public List<Department> getAllDepartments();
+	public List<Employee> getEmployeesByDepartmentId(int departmentId);
 	
 	
 	

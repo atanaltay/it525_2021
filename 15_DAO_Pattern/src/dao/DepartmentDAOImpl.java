@@ -8,7 +8,7 @@ import java.util.List;
 
 import model.Department;
 
-public class DepartmentDAO implements BaseDAO<Department>{
+public class DepartmentDAOImpl implements DepartmentDAO{
 
 	@Override
 	public Department findById(int id) {

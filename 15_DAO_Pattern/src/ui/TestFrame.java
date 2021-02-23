@@ -11,6 +11,8 @@ import javax.swing.border.EmptyBorder;
 
 import model.Department;
 import service.ApplicationService;
+import service.ApplicationServiceImpl;
+
 
 import javax.swing.JTextArea;
 
@@ -19,7 +21,7 @@ public class TestFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextArea textArea;
 	
-	private ApplicationService service = new ApplicationService();
+	private ApplicationService service = new ApplicationServiceImpl();
 	List<Department> departments = new ArrayList<>();
 
 	/**
