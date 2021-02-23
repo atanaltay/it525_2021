@@ -3,8 +3,10 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import model.Department;
 
@@ -28,10 +30,6 @@ public class DepartmentDAOImpl implements DepartmentDAO{
 			rs.next();
 			
 			department = new Department(rs.getInt("id"), rs.getString("name"));
-			
-			
-			
-			
 			
 			
 		} catch (Exception e) {

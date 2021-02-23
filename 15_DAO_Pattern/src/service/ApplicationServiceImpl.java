@@ -30,6 +30,14 @@ public class ApplicationServiceImpl implements ApplicationService{
 		
 	}
 
+	@Override
+	public void updateEmployee(Employee emp) {
+		
+		
+		employeeDAO.update(emp);
+		
+	}
+
 	
 	
 	

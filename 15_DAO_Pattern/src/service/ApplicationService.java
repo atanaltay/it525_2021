@@ -11,6 +11,7 @@ public interface ApplicationService {
 	
 	public List<Department> getAllDepartments();
 	public List<Employee> getEmployeesByDepartmentId(int departmentId);
+	public void updateEmployee(Employee emp);
 	
 	
 	

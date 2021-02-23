@@ -24,8 +24,34 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 
 	@Override
 	public int update(Employee item) {
-		// TODO Auto-generated method stub
-		return 0;
+		int retVal = 0;
+
+		try (
+				Connection conn = ConnectionManager.getConnection();
+				
+				)
+		
+		{
+			
+			String query = "update employee set name=?,  lastname=?, salary=? where id=?";
+			PreparedStatement psmt = conn.prepareStatement(query);
+			psmt.setString(1, item.getName());
+			psmt.setString(2, item.getLastname());
+			psmt.setDouble(3, item.getSalary());
+			psmt.setInt(4, item.getId());
+			
+			
+			retVal = psmt.executeUpdate();
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return retVal;
+		
+		
 	}
 
 	@Override
