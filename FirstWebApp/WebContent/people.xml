@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<people>
+	<person id="1234">
+		<name>altug</name>
+		<lname>tanaltay</lname>
+		
+	</person>
+	<person id="2233">
+		<name>mehmet</name>
+		<lname>emin</lname>
+		
+	</person>
+</people>
