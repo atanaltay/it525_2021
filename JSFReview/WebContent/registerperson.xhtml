@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<h:body> 
+
+
+	<h2>Register</h2>
+	
+	<h:form>
+		Name: <h:inputText value="#{registerBean.name}" /> Last Name: <h:inputText value="#{registerBean.lastName}" /> <h:commandButton action="#{registerBean.registerPerson()}" value="Submit" />
+	
+	
+	</h:form>
+	
+	<br/>
+	<h4>
+		<h:outputText value="#{registerBean.registerMessage}" />
+	</h4>
+
+</h:body> 
+</html>
