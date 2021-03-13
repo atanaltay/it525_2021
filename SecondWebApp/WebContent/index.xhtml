@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<h:outputStylesheet library="resources" name="style.css"/>
+</h:head> 
+<body> 
+<h:form>
+<h2>
+	<h:outputText value="#{homePageBean.welcomeMessage}" />
+</h2>
+	<ul>
+	<ui:repeat var="name" value="#{homePageBean.names}">
+		<li>#{name}</li>
+	
+	</ui:repeat>
+	</ul>
+
+	<hr/>
+	
+	<ul>
+	<ui:repeat var="prod" value="#{homePageBean.products}">
+		<li>#{prod.id} - #{prod.name} -  #{prod.category} -  #{prod.price} - <h:outputText  value="Available" rendered="#{prod.inStock}"/> 
+		<h:outputText value="Not Available" rendered="#{!prod.inStock}"/></li>
+	
+	</ui:repeat>
+	</ul>
+<!-- Data Table -->
+
+	<!--   <table><tr><td></td><td></td></tr></table> -->
+	
+	
+	<h:dataTable var="prod" value="#{homePageBean.products}">
+		<h:column>
+			<f:facet name="header">ID</f:facet>
+			<h:outputText value="#{prod.id}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Name</f:facet>
+			<h:outputText value="#{prod.name}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Category</f:facet>
+			<h:outputText value="#{prod.category}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Price</f:facet>
+			<h:outputText value="#{prod.price}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">In stock</f:facet>
+			<h:outputText  value="Available" rendered="#{prod.inStock}"/> 
+			<h:outputText value="Not Available" rendered="#{!prod.inStock}"/>
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Action</f:facet>
+			<h:commandLink action="#{homePageBean.viewProduct(prod)}" value="View" />
+		</h:column>
+	</h:dataTable>
+	<h3>New Product</h3>
+	<h:panelGrid columns="3">
+		 <h:outputLabel value="ID" for="nid" />
+		 <h:inputText value="#{homePageBean.newProduct.id}" id="nid" required="true" requiredMessage="*"/>
+		 <h:message for="nid"/>
+		
+		<h:outputLabel value="Name" for="nnm" />
+		 <h:inputText value="#{homePageBean.newProduct.name}" id="nnm" required="true" requiredMessage="*"/>
+		 <h:message for="nnm"/>
+		 
+		 <h:outputLabel value="Category" for="ccn" />
+		 <h:inputText value="#{homePageBean.newProduct.category}" id="ccn" required="true" requiredMessage="*"/>
+		 <h:message for="ccn"/>
+		 
+		 <h:outputLabel value="Price" for="cnpr" />
+		 <h:inputText value="#{homePageBean.newProduct.price}" id="cnpr" required="true" requiredMessage="*"/>
+		 <h:message for="cnpr"/>
+	
+		<h:outputLabel value="In Stock" for="st" />
+		 <h:inputText value="#{homePageBean.newProduct.inStock}" id="st" required="true" requiredMessage="*"/>
+		 <h:message for="st"/>
+	
+		<h:outputText />
+		<h:commandButton action="#{homePageBean.saveProduct('test string')}" value="Save" />
+		<h:outputText />
+	
+	
+	</h:panelGrid>
+	
+	
+	<!--  
+	ID: <h:inputText value="#{homePageBean.newProduct.id}"></h:inputText>
+	Name: <h:inputText value="#{homePageBean.newProduct.name}"></h:inputText>
+	Category: <h:inputText value="#{homePageBean.newProduct.category}"></h:inputText>
+	Price: <h:inputText value="#{homePageBean.newProduct.price}"></h:inputText>
+	In Stock: <h:inputText value="#{homePageBean.newProduct.inStock}"></h:inputText>
+	 Action is a navigation attribute, asks for a method returning String 
+	  <h:commandButton action="#{homePageBean.saveProduct('test string')}" value="Save" />  
+	  <h:commandButton action="#{homePageBean.saveProduct2()}" value="Save" /> --> 
+	
+</h:form>
+</body> 
+</html>

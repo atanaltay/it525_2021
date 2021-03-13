@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+
+</h:head> 
+<body> 
+<h:form>
+
+<!-- Data Table -->
+
+	<h:dataTable var="prod" value="#{testSessBean.products}">
+		<h:column>
+			<f:facet name="header">ID</f:facet>
+			<h:outputText value="#{prod.id}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Name</f:facet>
+			<h:outputText value="#{prod.name}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Category</f:facet>
+			<h:outputText value="#{prod.category}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Price</f:facet>
+			<h:outputText value="#{prod.price}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">In stock</f:facet>
+			<h:outputText  value="Available" rendered="#{prod.inStock}"/> 
+			<h:outputText value="Not Available" rendered="#{!prod.inStock}"/>
+		</h:column>
+		
+		
+	</h:dataTable>
+	<h3>New Product</h3>
+	<h:panelGrid columns="3">
+		 <h:outputLabel value="ID" for="nid" />
+		 <h:inputText value="#{testSessBean.newProduct.id}" id="nid" required="true" requiredMessage="*"/>
+		 <h:message for="nid"/>
+		
+		<h:outputLabel value="Name" for="nnm" />
+		 <h:inputText value="#{testSessBean.newProduct.name}" id="nnm" required="true" requiredMessage="*"/>
+		 <h:message for="nnm"/>
+		 
+		 <h:outputLabel value="Category" for="ccn" />
+		 <h:inputText value="#{testSessBean.newProduct.category}" id="ccn" required="true" requiredMessage="*"/>
+		 <h:message for="ccn"/>
+		 
+		 <h:outputLabel value="Price" for="cnpr" />
+		 <h:inputText value="#{testSessBean.newProduct.price}" id="cnpr" required="true" requiredMessage="*"/>
+		 <h:message for="cnpr"/>
+	
+		<h:outputLabel value="In Stock" for="st" />
+		 <h:inputText value="#{testSessBean.newProduct.inStock}" id="st" required="true" requiredMessage="*"/>
+		 <h:message for="st"/>
+	
+		<h:outputText />
+		<h:commandButton action="#{testSessBean.saveProduct()}" value="Save" />
+		<h:outputText />
+	
+	
+	</h:panelGrid>
+	
+
+	
+</h:form>
+</body> 
+</html>
