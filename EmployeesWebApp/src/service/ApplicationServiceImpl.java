@@ -47,6 +47,36 @@ public class ApplicationServiceImpl implements ApplicationService, Serializable{
 		return departmentDao.findById(deptid);
 	}
 
+	@Override
+	public int deleteDepartment(Department dept) {
+		return departmentDao.delete(dept);
+	}
+
+	@Override
+	public int saveDepartment(Department dept) {
+		return departmentDao.insert(dept);
+	}
+
+	@Override
+	public List<Employee> getAllEmployees() {
+		return employeeDAO.findAll();
+	}
+
+	@Override
+	public Employee getEmployeeById(int id) {
+		return employeeDAO.findById(id);
+	}
+
+	@Override
+	public int saveEmployee(Employee emp) {
+		return employeeDAO.insert(emp);
+	}
+
+	@Override
+	public int deleteEmployee(Employee emp) {
+		return employeeDAO.delete(emp);
+	}
+
 	
 	
 	

@@ -11,6 +11,7 @@ public interface BaseDAO<T extends BaseEntity> {
 	public List<T> findAll();
 	public int update(T item);
 	public int insert(T item);
+	public int delete(T item);
 	
 	
 	

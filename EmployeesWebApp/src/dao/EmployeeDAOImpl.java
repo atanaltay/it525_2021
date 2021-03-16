@@ -16,14 +16,57 @@ public class EmployeeDAOImpl implements EmployeeDAO, Serializable{
 
 	@Override
 	public Employee findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Employee emp = new Employee();
+		try (
+				Connection conn = ConnectionManager.getConnection();
+				
+				)
+		
+		{
+			
+			String query = "select * from employee where id=?";
+			PreparedStatement psmt = conn.prepareStatement(query);
+			psmt.setInt(1, id);
+			ResultSet rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				emp = new Employee(rs.getInt("id"), rs.getString("name"), rs.getString("lastname"), rs.getDouble("salary"),
+						rs.getString("notes"), rs.getInt("department_id"));
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return emp;
 	}
 
 	@Override
 	public List<Employee> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Employee> employees = new ArrayList<>();
+		String query = "select * from Employee";
+		
+		
+		try (
+				Connection conn = ConnectionManager.getConnection();
+				PreparedStatement psmt = conn.prepareStatement(query);
+				ResultSet rs = psmt.executeQuery();
+				
+				){
+			
+			while(rs.next()){
+				employees.add(new Employee(rs.getInt("id"),
+						rs.getString("name"), rs.getString("lastname"),
+						rs.getDouble("salary"), rs.getString("notes"),rs.getInt("department_id")));
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return employees;
 	}
 
 	@Override
@@ -60,8 +103,33 @@ public class EmployeeDAOImpl implements EmployeeDAO, Serializable{
 
 	@Override
 	public int insert(Employee item) {
-		// TODO Auto-generated method stub
-		return 0;
+		String query = "insert into employee(name, lastname, salary, notes, department_id) " +
+				"values(?,?,?,?,?)";
+				
+		int retval = 0;
+				try (
+						Connection conn = ConnectionManager.getConnection();
+						PreparedStatement psmt = conn.prepareStatement(query);
+						
+						
+						){
+					
+					
+					psmt.setString(1, item.getName());
+					psmt.setString(2, item.getLastname());
+					psmt.setDouble(3, item.getSalary());
+					psmt.setString(4, item.getNotes());
+					psmt.setInt(5, item.getDepartment_id());
+					retval = psmt.executeUpdate();
+					
+					
+					
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			return retval;
 	}
 
 	@Override
@@ -94,6 +162,33 @@ public class EmployeeDAOImpl implements EmployeeDAO, Serializable{
 		}
 		
 		return employees;
+	}
+
+	@Override
+	public int delete(Employee item) {
+		String query = "delete from employee where id=?";
+		int retval = 0;
+		
+		try (
+				Connection conn = ConnectionManager.getConnection();
+				PreparedStatement psmt = conn.prepareStatement(query);
+				
+				
+				){
+			
+			
+			psmt.setInt(1, item.getId());
+
+			retval = psmt.executeUpdate();
+			
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return retval;
 	}
 
 	

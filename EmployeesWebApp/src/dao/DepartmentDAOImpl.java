@@ -90,8 +90,48 @@ public class DepartmentDAOImpl implements DepartmentDAO, Serializable{
 
 	@Override
 	public int insert(Department item) {
-		// TODO Auto-generated method stub
-		return 0;
+		String query = "insert into department(name) " + "values(?);";
+		int retval =0;
+		try (Connection conn = ConnectionManager.getConnection(); 
+			PreparedStatement psmt = conn.prepareStatement(query);
+
+		) {
+
+			psmt.setString(1, item.getName()
+					);
+
+			retval = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return retval;
+	}
+
+	@Override
+	public int delete(Department item) {
+		String query = "delete from department where id=?";
+		int retval = 0;
+		
+		try (
+				Connection conn =ConnectionManager.getConnection();
+				PreparedStatement psmt = conn.prepareStatement(query);
+				
+				
+				){
+			
+			
+			psmt.setInt(1, item.getId());
+
+			retval = psmt.executeUpdate();
+			
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return retval;
 	}
 
 	
