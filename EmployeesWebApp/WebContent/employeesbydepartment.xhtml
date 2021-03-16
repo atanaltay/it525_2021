@@ -8,16 +8,68 @@
 <body> 
 
 <h2>Employees of department #{employeesByDepartment.selectedDepartment.name}</h2>
-
+<h:form>
 
 <h:dataTable var="emp" value="#{employeesByDepartment.employees}">
 	<h:column>
 		<f:facet name="header">Name</f:facet>
+		<h:outputText value="#{emp.name}" />
+	</h:column>
+	<h:column>
+		<f:facet name="header">Last Name</f:facet>
 		<h:outputText value="#{emp.lastname}" />
 	</h:column>
+	<h:column>
+		<f:facet name="header">Name</f:facet>
+		<h:outputText value="#{emp.salary}" />
+	</h:column>
+	<h:column>
+		<f:facet name="header">Notes</f:facet>
+		<h:outputText value="#{emp.notes}" />
+	</h:column>
+	
+	<h:column>
+		<f:facet name="header">Action</f:facet>
+		
+			<h:commandLink action="#{employeesByDepartment.deleteEmployee(emp.id)}" value="Delete" immediate="true">
+					<f:param name="deptid" value="#{param.deptid}"/>
+			</h:commandLink>
+		
+	</h:column>
+	
 
 </h:dataTable>
 
+	<hr/>
+	
+	
+		<h:panelGrid columns="3">
+			<h:outputLabel value="Name:" for="txtname"/>
+			<h:inputText value="#{employeesByDepartment.newEmployee.name}" id="txtname" required="true" requiredMessage="*"/>
+			<h:message for="txtname"/>
+			
+			<h:outputLabel value="Last Name:" for="txtlastname"/>
+			<h:inputText value="#{employeesByDepartment.newEmployee.lastname}" id="txtlastname" required="true" requiredMessage="*"/>
+			<h:message for="txtlastname"/>
+			
+			<h:outputLabel value="Salary:" for="txtsalary"/>
+			<h:inputText value="#{employeesByDepartment.newEmployee.salary}" id="txtsalary" required="true" requiredMessage="*"/>
+			<h:message for="txtsalary"/>
+			
+			<h:outputLabel value="Notes:" for="txtnotes"/>
+			<h:inputText value="#{employeesByDepartment.newEmployee.notes}" id="txtnotes" required="true" requiredMessage="*"/>
+			<h:message for="txtnotes"/>
+			
+			<h:outputText />
+			<h:commandButton action="#{employeesByDepartment.saveEmployee()}" value="Save" >
+				<f:param name="deptid" value="#{param.deptid}"/>
+			</h:commandButton>
+			<h:outputText />
+			
+		</h:panelGrid>
+	
+	
+	</h:form>
 
 </body> 
 </html>

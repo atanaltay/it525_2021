@@ -3,7 +3,9 @@ package service;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 
 import dao.DepartmentDAO;
 import dao.DepartmentDAOImpl;
@@ -12,11 +14,14 @@ import dao.EmployeeDAOImpl;
 import model.Department;
 import model.Employee;
 
-@SessionScoped
+@RequestScoped
 public class ApplicationServiceImpl implements ApplicationService, Serializable{
 
-	private DepartmentDAO departmentDao = new DepartmentDAOImpl();
-	private EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+	@Inject
+	private DepartmentDAO departmentDao;
+	
+	@Inject
+	private EmployeeDAO employeeDAO;
 	
 	
 	@Override

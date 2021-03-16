@@ -7,11 +7,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 
 import model.Employee;
 
-@SessionScoped
+@RequestScoped
 public class EmployeeDAOImpl implements EmployeeDAO, Serializable{
 
 	@Override

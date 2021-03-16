@@ -24,7 +24,7 @@ public class Employee extends BaseEntity{
 	}
 
 
-	public String getName() {
+	public String txtnotes() {
 		return name;
 	}
 
@@ -33,7 +33,10 @@ public class Employee extends BaseEntity{
 		this.name = name;
 	}
 
-
+	public String getName() {
+		return name;
+	}
+	
 	public String getLastname() {
 		return lastname;
 	}

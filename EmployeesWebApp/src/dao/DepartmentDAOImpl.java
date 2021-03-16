@@ -8,11 +8,12 @@ import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 
 import model.Department;
 
-@SessionScoped
+@RequestScoped
 public class DepartmentDAOImpl implements DepartmentDAO, Serializable{
 
 	@Override
